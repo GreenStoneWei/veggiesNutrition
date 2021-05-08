@@ -23,8 +23,9 @@ class RedisService {
   async checkConnection() {
     return new Promise((resolve, reject) => {
       let counter = 0
-      const timer = setInterval(() => {
-        if (this._redis.status === 'ok') {
+      const timer = setInterval(async () => {
+        const result = await this._redis.ping()
+        if (result === 'PONG') {
           clearInterval(timer)
           resolve(undefined)
         }
@@ -38,16 +39,4 @@ class RedisService {
   }
 }
 
-const redis = new RedisService()
-
-export async function init() {
-  return redis.init()
-}
-
-export async function checkRedisConnection() {
-  return redis.checkConnection()
-}
-
-export async function getClient() {
-  return redis.getClient()
-}
+export = new RedisService()

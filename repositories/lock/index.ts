@@ -5,7 +5,6 @@ export interface Lock {
   name: string
   lock: RedLock.Lock
 }
-
 export class LockManager {
   lock: RedLock
 

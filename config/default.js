@@ -1,15 +1,13 @@
 module.exports = {
   port: 3000,
   redis: {
-    host: 'localhost',
-    port: 6379,
-    password: undefined,
-    db: undefined
+    host: '127.0.0.1',
+    port: 6379
   },
-  dB: {
+  db: {
     dialect: 'postgres',
     host: '127.0.0.1',
-    port: 5432,
+    port: 5434,
     username: 'tutorAPI',
     password: 'tutorAPI',
     database: 'tutorAPI',
