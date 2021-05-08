@@ -1,0 +1,11 @@
+{
+  "name": "tutorsapi",
+  "version": "1.0.0",
+  "description": "Backend Engineer Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "author": "",
+  "license": "ISC"
+}

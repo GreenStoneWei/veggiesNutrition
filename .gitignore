@@ -1,0 +1,10 @@
+# Test Coverage 
+coverage
+
+# Dependency directories
+node_modules
+
+# IDE
+.vscode
+
+ormconfig.json
