@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm'
+import { Tutors } from './Tutors'
 @Entity()
 export class TutorLessonPrices {
   @PrimaryGeneratedColumn({
@@ -21,4 +21,10 @@ export class TutorLessonPrices {
     type: 'double precision'
   })
   normalPrice: number
+
+  @OneToOne(() => Tutors, (tutor) => tutor.priceInfo)
+  @JoinColumn({
+    name: 'tutorId'
+  })
+  tutor: Tutors
 }

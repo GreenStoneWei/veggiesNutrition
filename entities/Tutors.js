@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tutors = void 0;
 const typeorm_1 = require("typeorm");
 const TutorLanguages_1 = require("./TutorLanguages");
+const TutorLessonPrices_1 = require("./TutorLessonPrices");
 let Tutors = class Tutors {
 };
 __decorate([
@@ -40,8 +41,11 @@ __decorate([
     })
 ], Tutors.prototype, "introduction", void 0);
 __decorate([
+    typeorm_1.OneToOne(() => TutorLessonPrices_1.TutorLessonPrices, (tutorLessonPrice) => tutorLessonPrice.tutor)
+], Tutors.prototype, "priceInfo", void 0);
+__decorate([
     typeorm_1.OneToMany(() => TutorLanguages_1.TutorLanguages, (tutorLanguage) => tutorLanguage.language)
-], Tutors.prototype, "tutorLanguages", void 0);
+], Tutors.prototype, "teachingLanguages", void 0);
 Tutors = __decorate([
     typeorm_1.Unique('uniqueTutorSlug', ['slug']),
     typeorm_1.Entity()

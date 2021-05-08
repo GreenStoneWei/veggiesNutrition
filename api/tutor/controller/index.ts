@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction as Next, RequestHandler } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-export const getBySlug: (req: Request, res: Response, next: Next) => any = async (req, res, next) => {
+export const getBySlug: (req: Request, res: Response, next: NextFunction) => any = async (req, res, next) => {
   res.send({ data: 'getBySlug success' })
 }

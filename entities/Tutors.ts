@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, Unique, OneToMany, OneToOne } from 'typeorm'
 import { TutorLanguages } from './TutorLanguages'
-
+import { TutorLessonPrices } from './TutorLessonPrices'
 @Unique('uniqueTutorSlug', ['slug'])
 @Entity()
 export class Tutors {
@@ -32,6 +32,9 @@ export class Tutors {
   })
   introduction: string
 
+  @OneToOne(() => TutorLessonPrices, (tutorLessonPrice) => tutorLessonPrice.tutor)
+  priceInfo: TutorLessonPrices
+
   @OneToMany(() => TutorLanguages, (tutorLanguage) => tutorLanguage.language)
-  tutorLanguages: TutorLanguages[]
+  teachingLanguages: TutorLanguages[]
 }

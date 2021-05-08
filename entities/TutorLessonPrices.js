@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TutorLessonPrices = void 0;
 const typeorm_1 = require("typeorm");
+const Tutors_1 = require("./Tutors");
 let TutorLessonPrices = class TutorLessonPrices {
 };
 __decorate([
@@ -30,6 +31,12 @@ __decorate([
         type: 'double precision'
     })
 ], TutorLessonPrices.prototype, "normalPrice", void 0);
+__decorate([
+    typeorm_1.OneToOne(() => Tutors_1.Tutors, (tutor) => tutor.priceInfo),
+    typeorm_1.JoinColumn({
+        name: 'tutorId'
+    })
+], TutorLessonPrices.prototype, "tutor", void 0);
 TutorLessonPrices = __decorate([
     typeorm_1.Entity()
 ], TutorLessonPrices);
