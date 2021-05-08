@@ -1,20 +1,20 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTutorsBySlug = void 0;
-const config_1 = __importDefault(require("config"));
-const EXPIRATION_DAYS = config_1.default.get('cache.tutor');
-async function getTutorsBySlug(tutorSlug) {
-    const cache = await checkIfCacheExists(languageSlug);
-    let data = [];
+exports.getTutorBySlug = void 0;
+const languages_1 = require("../../../infra/enums/languages");
+const factory_1 = require("../../factory");
+async function getTutorBySlug(tutorSlug) {
+    const tutor = factory_1.getCacheStrategy(languages_1.CacheStrategy.tutor);
+    const cache = await tutor.checkIfCacheExists(tutorSlug);
+    const expirationDay = tutor.getExpirationDay();
+    let data;
     if (!cache) {
-        data = await refreshCache(languageSlug);
+        data = await tutor.refreshCache(tutorSlug);
     }
     else {
-        data = await getFromCache(cache, expirationDay, languageSlug);
+        data = await tutor.getFromCache(cache, expirationDay, tutorSlug);
     }
+    return data;
 }
-exports.getTutorsBySlug = getTutorsBySlug;
+exports.getTutorBySlug = getTutorBySlug;
 //# sourceMappingURL=index.js.map

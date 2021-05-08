@@ -3,3 +3,8 @@ export enum LanguageSlug {
   chinsese = 'chinsese',
   japanese = 'japanese'
 }
+
+export enum CacheStrategy {
+  tutor = 'tutor',
+  tutors = 'tutors'
+}

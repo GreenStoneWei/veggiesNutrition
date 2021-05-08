@@ -1,15 +1,18 @@
-import config from 'config'
+import { CacheStrategy } from '../../../infra/enums/languages'
+import { TutorStrategy, getCacheStrategy } from '../../factory'
 
-const EXPIRATION_DAYS = config.get('cache.tutor')
+export async function getTutorBySlug(tutorSlug: string) {
+  const tutor = getCacheStrategy(CacheStrategy.tutor) as TutorStrategy
 
-export async function getTutorsBySlug(tutorSlug: string) {
-  const cache = await checkIfCacheExists(languageSlug)
+  const cache = await tutor.checkIfCacheExists(tutorSlug)
+  const expirationDay = tutor.getExpirationDay()
 
-  let data: ReturnType<typeof tranformToResponse> = []
+  let data
 
   if (!cache) {
-    data = await refreshCache(languageSlug)
+    data = await tutor.refreshCache(tutorSlug)
   } else {
-    data = await getFromCache(cache, expirationDay, languageSlug)
+    data = await tutor.getFromCache(cache, expirationDay, tutorSlug)
   }
+  return data
 }

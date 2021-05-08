@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCacheStrategy = void 0;
+exports.getCacheStrategy = exports.TutorStrategy = exports.TutorsStrategy = void 0;
 const config_1 = __importDefault(require("config"));
 const languages_1 = require("../../infra/enums/languages");
 const checkCache_1 = require("../../repositories/cache/redis/checkCache");
@@ -17,11 +17,14 @@ class TutorsCacheStrategy {
     async refreshCache(slug) {
         throw new Error();
     }
-    async getFromCache(cache, expirationDay, languageSlug) {
+    async getFromCache(cache, expirationDay, slug) {
         if (this.isCacheExpired(cache.timestamp, expirationDay)) {
-            await this.refreshCache(languageSlug);
+            await this.refreshCache(slug);
         }
         return cache.data;
+    }
+    getExpirationDay(slug) {
+        throw new Error();
     }
     isCacheExpired(_timestamp, expirationDay) {
         const now = new Date(); // consider expiration definition and may be using .startOf()
@@ -71,6 +74,7 @@ class TutorsStrategy extends TutorsCacheStrategy {
         }
     }
 }
+exports.TutorsStrategy = TutorsStrategy;
 class TutorStrategy extends TutorsCacheStrategy {
     constructor(dbInstance) {
         super();
@@ -89,11 +93,12 @@ class TutorStrategy extends TutorsCacheStrategy {
         return config_1.default.get('cache.tutor');
     }
 }
+exports.TutorStrategy = TutorStrategy;
 function getCacheStrategy(resource) {
     switch (resource) {
-        case 'tutors':
+        case languages_1.CacheStrategy.tutors:
             return new TutorsStrategy(db_1.default);
-        case 'tutor':
+        case languages_1.CacheStrategy.tutor:
             return new TutorStrategy(db_1.default);
         default:
             throw new Error();

@@ -1,6 +1,5 @@
 import redis from './index'
 import { LanguageSlug } from '../../../infra/enums/languages'
-import { CacheData } from '../../../api/tutors/service'
 const PREFIX = 'TutorsAPI:tutors:'
 
 export async function set(key: string, data: any) {
@@ -11,7 +10,7 @@ export async function set(key: string, data: any) {
   }
 }
 
-export async function get(key: string): Promise<CacheData> {
+export async function get(key: string): Promise<any> {
   try {
     const result = await redis.getClient().get(`${PREFIX}:${key}`)
     return result ? JSON.parse(result) : null

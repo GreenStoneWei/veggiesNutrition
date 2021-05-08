@@ -1,11 +1,27 @@
 import config from 'config'
-import { LanguageSlug } from '../../infra/enums/languages'
+import { CacheStrategy, LanguageSlug } from '../../infra/enums/languages'
 import { set, get } from '../../repositories/cache/redis/checkCache'
-import { CacheData } from '../tutors/service'
 import db from '../../repositories/db'
 import { Tutors } from '../../entities/Tutors'
 import moment from 'moment'
 type DB = typeof db
+
+interface ResponseTutor {
+  id: string
+  slug: string
+  name: string
+  headline: string
+  introduction: string
+  price_info: {
+    trial: number
+    normal: number
+  }
+  teaching_languages: number[]
+}
+export interface CacheData {
+  timestamp: string
+  data: ResponseTutor | ResponseTutor[]
+}
 
 class TutorsCacheStrategy {
   constructor() {}
@@ -18,11 +34,15 @@ class TutorsCacheStrategy {
     throw new Error()
   }
 
-  async getFromCache(cache: CacheData, expirationDay: number, languageSlug: LanguageSlug) {
+  async getFromCache(cache: CacheData, expirationDay: number, slug: string) {
     if (this.isCacheExpired(cache.timestamp, expirationDay)) {
-      await this.refreshCache(languageSlug)
+      await this.refreshCache(slug)
     }
     return cache.data
+  }
+
+  getExpirationDay(slug?: string): number {
+    throw new Error()
   }
 
   isCacheExpired(_timestamp: string, expirationDay: number): boolean {
@@ -50,7 +70,7 @@ class TutorsCacheStrategy {
   }
 }
 
-class TutorsStrategy extends TutorsCacheStrategy {
+export class TutorsStrategy extends TutorsCacheStrategy {
   db: DB
   constructor(dbInstance: DB) {
     super()
@@ -79,7 +99,7 @@ class TutorsStrategy extends TutorsCacheStrategy {
   }
 }
 
-class TutorStrategy extends TutorsCacheStrategy {
+export class TutorStrategy extends TutorsCacheStrategy {
   db: DB
   constructor(dbInstance: DB) {
     super()
@@ -100,11 +120,11 @@ class TutorStrategy extends TutorsCacheStrategy {
   }
 }
 
-export function getCacheStrategy(resource: string) {
+export function getCacheStrategy(resource: CacheStrategy) {
   switch (resource) {
-    case 'tutors':
+    case CacheStrategy.tutors:
       return new TutorsStrategy(db)
-    case 'tutor':
+    case CacheStrategy.tutor:
       return new TutorStrategy(db)
     default:
       throw new Error()
