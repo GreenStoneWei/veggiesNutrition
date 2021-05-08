@@ -32,7 +32,7 @@ const getBySlug = async (req, res, next) => {
     let lock;
     try {
         const tutorSlug = req.params.tutorSlug;
-        lock = await lockManager.acquireLock(tutorSlug, LOCK_TTL);
+        // lock = await lockManager.acquireLock(tutorSlug, LOCK_TTL)
         const data = await service.getTutorBySlug(tutorSlug);
         res.send({ data });
     }

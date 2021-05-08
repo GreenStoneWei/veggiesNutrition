@@ -14,7 +14,7 @@ export const getTutors: (req: Request, res: Response, next: NextFunction) => any
     if (!Object.keys(LanguageSlug).includes(languageSlug)) {
       throw new Error('language not found')
     }
-    lock = await lockManager.acquireLock(languageSlug, LOCK_TTL)
+    // lock = await lockManager.acquireLock(languageSlug, LOCK_TTL)
     const data = await service.getTutorsBySlug(languageSlug as LanguageSlug)
 
     res.send({ data })

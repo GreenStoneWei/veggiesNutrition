@@ -10,7 +10,7 @@ export const getBySlug: (req: Request, res: Response, next: NextFunction) => any
   let lock
   try {
     const tutorSlug = req.params.tutorSlug
-    lock = await lockManager.acquireLock(tutorSlug, LOCK_TTL)
+    // lock = await lockManager.acquireLock(tutorSlug, LOCK_TTL)
     const data = await service.getTutorBySlug(tutorSlug)
     res.send({ data })
   } catch (error) {

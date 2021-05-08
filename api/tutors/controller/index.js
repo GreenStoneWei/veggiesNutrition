@@ -36,7 +36,7 @@ const getTutors = async (req, res, next) => {
         if (!Object.keys(languages_1.LanguageSlug).includes(languageSlug)) {
             throw new Error('language not found');
         }
-        lock = await lockManager.acquireLock(languageSlug, LOCK_TTL);
+        // lock = await lockManager.acquireLock(languageSlug, LOCK_TTL)
         const data = await service.getTutorsBySlug(languageSlug);
         res.send({ data });
     }
