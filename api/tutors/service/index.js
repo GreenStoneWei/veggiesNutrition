@@ -10,7 +10,7 @@ const db_1 = __importDefault(require("../../../repositories/db"));
 const checkCache_1 = require("../../../repositories/cache/redis/checkCache");
 const languages_1 = require("../../../infra/enums/languages");
 async function getTutorsBySlug(languageSlug) {
-    const expirationDay = getExpirationDayByLanguageSlug(languageSlug);
+    const expirationDay = getExpirationDay(languageSlug);
     const cache = await checkIfCacheExists(languageSlug);
     let data = [];
     if (!cache) {
@@ -19,9 +19,10 @@ async function getTutorsBySlug(languageSlug) {
     else {
         data = await getFromCache(cache, expirationDay, languageSlug);
     }
+    return data;
 }
 exports.getTutorsBySlug = getTutorsBySlug;
-function getExpirationDayByLanguageSlug(languageSlug) {
+function getExpirationDay(languageSlug) {
     switch (languageSlug) {
         case languages_1.LanguageSlug.english:
             return config_1.default.get(`cache.expirationDays.${languages_1.LanguageSlug.english}`);
@@ -38,7 +39,7 @@ async function checkIfCacheExists(languageSlug) {
 }
 async function refreshCache(languageSlug) {
     const rawData = await db_1.default.tutor.getByLanguageSlug(languageSlug);
-    const data = tranformToResponse(rawData);
+    const data = rawData.map(tranformToResponse);
     // using floating promise not to block response
     checkCache_1.set(languageSlug, { timestamp: new Date().toISOString(), data }).catch(console.error);
     return data;
@@ -57,20 +58,18 @@ function isCacheExpired(_timestamp, expirationDay) {
     }
     return false;
 }
-function tranformToResponse(tutors) {
-    return tutors.map((tutor) => {
-        return {
-            id: tutor.id,
-            slug: tutor.slug,
-            name: tutor.name,
-            headline: tutor.headline,
-            introduction: tutor.introduction,
-            price_info: {
-                trial: tutor.priceInfo.trialPrice,
-                normal: tutor.priceInfo.normalPrice
-            },
-            teaching_languages: tutor.teachingLanguages.map((l) => l.id)
-        };
-    });
+function tranformToResponse(tutor) {
+    return {
+        id: tutor.id,
+        slug: tutor.slug,
+        name: tutor.name,
+        headline: tutor.headline,
+        introduction: tutor.introduction,
+        price_info: {
+            trial: tutor.priceInfo.trialPrice,
+            normal: tutor.priceInfo.normalPrice
+        },
+        teaching_languages: tutor.teachingLanguages.map((l) => l.id)
+    };
 }
 //# sourceMappingURL=index.js.map
