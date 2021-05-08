@@ -9,6 +9,9 @@ class LockManager {
     constructor(client) {
         this.lock = this.initRedisLock(client);
     }
+    /**
+     * @param ttl in seconds
+     */
     async acquireLock(lockName, ttl) {
         try {
             const lock = await this.lock.acquire(lockName, ttl);

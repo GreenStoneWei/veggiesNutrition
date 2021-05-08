@@ -12,6 +12,9 @@ export class LockManager {
     this.lock = this.initRedisLock(client)
   }
 
+  /**
+   * @param ttl in seconds
+   */
   async acquireLock(lockName: string, ttl: number): Promise<Lock> {
     try {
       const lock = await this.lock.acquire(lockName, ttl)

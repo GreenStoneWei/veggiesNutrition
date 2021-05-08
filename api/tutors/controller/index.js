@@ -18,10 +18,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTutors = void 0;
 const languages_1 = require("../../../infra/enums/languages");
+const lock_1 = require("../../../repositories/lock");
+const redis_1 = __importDefault(require("../../../repositories/cache/redis"));
 const service = __importStar(require("../service"));
+const lockManager = new lock_1.LockManager(redis_1.default.getClient());
 const getTutors = async (req, res, next) => {
     try {
         if (!Object.keys(languages_1.LanguageSlug).includes(req.params.languageSlug)) {
