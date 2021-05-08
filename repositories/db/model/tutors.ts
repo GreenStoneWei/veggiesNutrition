@@ -24,4 +24,13 @@ export class ModelTutors {
       throw error
     }
   }
+
+  async getByTutorSlug(tutorSlug: string) {
+    try {
+      const data = await this.client.getRepository(Tutors).findOne({ where: { slug: tutorSlug } })
+      return data
+    } catch (error) {
+      throw error
+    }
+  }
 }

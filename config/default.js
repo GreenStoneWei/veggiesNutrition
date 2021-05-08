@@ -19,7 +19,8 @@ module.exports = {
       // in mins
       english: 3,
       chinsese: 5,
-      japanese: 10
+      japanese: 10,
+      tutor: 10
     }
   }
 }

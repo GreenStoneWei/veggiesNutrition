@@ -22,6 +22,15 @@ class ModelTutors {
             throw error;
         }
     }
+    async getByTutorSlug(tutorSlug) {
+        try {
+            const data = await this.client.getRepository(Tutors_1.Tutors).findOne({ where: { slug: tutorSlug } });
+            return data;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
 }
 exports.ModelTutors = ModelTutors;
 //# sourceMappingURL=tutors.js.map

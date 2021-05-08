@@ -27,17 +27,25 @@ const languages_1 = require("../../../infra/enums/languages");
 const lock_1 = require("../../../repositories/lock");
 const redis_1 = __importDefault(require("../../../repositories/cache/redis"));
 const service = __importStar(require("../service"));
+const LOCK_TTL = 5; // in seconds
 const lockManager = new lock_1.LockManager(redis_1.default.getClient());
 const getTutors = async (req, res, next) => {
+    let lock;
     try {
-        if (!Object.keys(languages_1.LanguageSlug).includes(req.params.languageSlug)) {
+        const languageSlug = req.params.languageSlug;
+        if (!Object.keys(languages_1.LanguageSlug).includes(languageSlug)) {
             throw new Error('language not found');
         }
-        const data = await service.getTutorsBySlug(req.params.languageSlug);
+        lock = await lockManager.acquireLock(languageSlug, LOCK_TTL);
+        const data = await service.getTutorsBySlug(languageSlug);
         res.send({ data });
     }
     catch (error) {
         next(error);
+    }
+    finally {
+        if (lock)
+            await lockManager.releaseLock(lock);
     }
 };
 exports.getTutors = getTutors;
