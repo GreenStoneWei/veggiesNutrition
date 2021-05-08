@@ -116,7 +116,7 @@ export class TutorStrategy extends TutorsCacheStrategy {
   }
 
   getExpirationDay(): number {
-    return config.get('cache.tutor')
+    return config.get('cache.expirationDays.tutor')
   }
 }
 

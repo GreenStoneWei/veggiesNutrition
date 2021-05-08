@@ -25,7 +25,7 @@
     "ioredis": "^4.27.2",
     "moment": "^2.29.1",
     "pg-promise": "^10.10.2",
-    "redlock": "^4.2.0",
+    "redlock": "^4.1.0",
     "typeorm": "^0.2.32"
   }
 }

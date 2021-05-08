@@ -90,7 +90,7 @@ class TutorStrategy extends TutorsCacheStrategy {
         return data;
     }
     getExpirationDay() {
-        return config_1.default.get('cache.tutor');
+        return config_1.default.get('cache.expirationDays.tutor');
     }
 }
 exports.TutorStrategy = TutorStrategy;

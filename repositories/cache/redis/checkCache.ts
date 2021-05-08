@@ -1,5 +1,4 @@
 import redis from './index'
-import { LanguageSlug } from '../../../infra/enums/languages'
 const PREFIX = 'TutorsAPI:tutors:'
 
 export async function set(key: string, data: any) {
