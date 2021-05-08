@@ -23,6 +23,7 @@
     "config": "^3.3.6",
     "express": "^4.17.1",
     "ioredis": "^4.27.2",
+    "moment": "^2.29.1",
     "pg-promise": "^10.10.2",
     "redlock": "^4.2.0",
     "typeorm": "^0.2.32"

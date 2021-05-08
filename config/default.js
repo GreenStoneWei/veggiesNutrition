@@ -13,5 +13,13 @@ module.exports = {
     database: 'tutorAPI',
     autoMigrateOldSchema: true,
     migrationStorageTableName: 'Migrations'
+  },
+  cache: {
+    expirationDays: {
+      // in mins
+      english: 3,
+      chinsese: 5,
+      japanese: 10
+    }
   }
 }
