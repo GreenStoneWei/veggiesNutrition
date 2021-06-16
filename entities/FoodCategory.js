@@ -6,28 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Languages = void 0;
+exports.FoodCategory = void 0;
 const typeorm_1 = require("typeorm");
-const TutorLanguages_1 = require("./TutorLanguages");
-let Languages = class Languages {
+const FoodIngredient_1 = require("./FoodIngredient");
+let FoodCategory = class FoodCategory {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
         type: 'int'
     })
-], Languages.prototype, "id", void 0);
+], FoodCategory.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column({
-        type: 'varchar',
-        length: 30
+        type: 'text'
     })
-], Languages.prototype, "slug", void 0);
+], FoodCategory.prototype, "name", void 0);
 __decorate([
-    typeorm_1.OneToMany(() => TutorLanguages_1.TutorLanguages, (tutorLanguage) => tutorLanguage.language)
-], Languages.prototype, "tutorLanguages", void 0);
-Languages = __decorate([
-    typeorm_1.Unique('uniqueLanguageSlug', ['slug']),
+    typeorm_1.OneToMany(() => FoodIngredient_1.FoodIngredient, (foodIngredient) => foodIngredient.foodCategory)
+], FoodCategory.prototype, "foodIngredients", void 0);
+FoodCategory = __decorate([
     typeorm_1.Entity()
-], Languages);
-exports.Languages = Languages;
-//# sourceMappingURL=Languages.js.map
+], FoodCategory);
+exports.FoodCategory = FoodCategory;
+//# sourceMappingURL=FoodCategory.js.map

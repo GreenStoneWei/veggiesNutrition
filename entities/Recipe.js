@@ -6,39 +6,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TutorLessonPrices = void 0;
+exports.Recipe = void 0;
 const typeorm_1 = require("typeorm");
-const Tutors_1 = require("./Tutors");
-let TutorLessonPrices = class TutorLessonPrices {
+const FoodIngredient_1 = require("./FoodIngredient");
+let Recipe = class Recipe {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
         type: 'int'
     })
-], TutorLessonPrices.prototype, "id", void 0);
+], Recipe.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], Recipe.prototype, "name", void 0);
 __decorate([
     typeorm_1.Column({
         type: 'int'
     })
-], TutorLessonPrices.prototype, "tutorId", void 0);
+], Recipe.prototype, "ingredientId", void 0);
 __decorate([
     typeorm_1.Column({
-        type: 'double precision'
+        type: 'real'
     })
-], TutorLessonPrices.prototype, "trialPrice", void 0);
+], Recipe.prototype, "quantity", void 0);
 __decorate([
-    typeorm_1.Column({
-        type: 'double precision'
-    })
-], TutorLessonPrices.prototype, "normalPrice", void 0);
-__decorate([
-    typeorm_1.OneToOne(() => Tutors_1.Tutors, (tutor) => tutor.priceInfo),
+    typeorm_1.ManyToOne(() => FoodIngredient_1.FoodIngredient),
     typeorm_1.JoinColumn({
-        name: 'tutorId'
+        name: 'ingredientId'
     })
-], TutorLessonPrices.prototype, "tutor", void 0);
-TutorLessonPrices = __decorate([
+], Recipe.prototype, "foodIngredient", void 0);
+Recipe = __decorate([
     typeorm_1.Entity()
-], TutorLessonPrices);
-exports.TutorLessonPrices = TutorLessonPrices;
-//# sourceMappingURL=TutorLessonPrices.js.map
+], Recipe);
+exports.Recipe = Recipe;
+//# sourceMappingURL=Recipe.js.map

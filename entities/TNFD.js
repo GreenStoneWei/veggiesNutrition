@@ -6,49 +6,62 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tutors = void 0;
+exports.TNFD = void 0;
 const typeorm_1 = require("typeorm");
-const TutorLanguages_1 = require("./TutorLanguages");
-const TutorLessonPrices_1 = require("./TutorLessonPrices");
-let Tutors = class Tutors {
+let TNFD = class TNFD {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
         type: 'int'
     })
-], Tutors.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column({
-        type: 'varchar',
-        length: 50
-    })
-], Tutors.prototype, "slug", void 0);
-__decorate([
-    typeorm_1.Column({
-        type: 'varchar',
-        length: 50
-    })
-], Tutors.prototype, "name", void 0);
-__decorate([
-    typeorm_1.Column({
-        type: 'varchar',
-        length: 100
-    })
-], Tutors.prototype, "headline", void 0);
+], TNFD.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column({
         type: 'text'
     })
-], Tutors.prototype, "introduction", void 0);
+], TNFD.prototype, "foodCategory", void 0);
 __decorate([
-    typeorm_1.OneToOne(() => TutorLessonPrices_1.TutorLessonPrices, (tutorLessonPrice) => tutorLessonPrice.tutor)
-], Tutors.prototype, "priceInfo", void 0);
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "dataCategory", void 0);
 __decorate([
-    typeorm_1.OneToMany(() => TutorLanguages_1.TutorLanguages, (tutorLanguage) => tutorLanguage.language)
-], Tutors.prototype, "teachingLanguages", void 0);
-Tutors = __decorate([
-    typeorm_1.Unique('uniqueTutorSlug', ['slug']),
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "idNum", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "name", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "otherName", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "analyzedCategory", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "analyzedItem", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "unit", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], TNFD.prototype, "qtyPerHundredGram", void 0);
+TNFD = __decorate([
     typeorm_1.Entity()
-], Tutors);
-exports.Tutors = Tutors;
-//# sourceMappingURL=Tutors.js.map
+], TNFD);
+exports.TNFD = TNFD;
+//# sourceMappingURL=TNFD.js.map

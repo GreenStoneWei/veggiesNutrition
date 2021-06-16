@@ -4,23 +4,15 @@ module.exports = {
     host: '127.0.0.1',
     port: 6379
   },
-  db: {
+  tfndDb: {
     dialect: 'postgres',
     host: '127.0.0.1',
     port: 5434,
-    username: 'tutorAPI',
-    password: 'tutorAPI',
-    database: 'tutorAPI',
+    username: 'veggies',
+    password: 'veggies',
+    database: 'veggies',
     autoMigrateOldSchema: true,
-    migrationStorageTableName: 'Migrations'
-  },
-  cache: {
-    expirationDays: {
-      // in mins
-      english: 3,
-      chinsese: 5,
-      japanese: 10,
-      tutor: 10
-    }
+    migrationStorageTableName: 'Migrations',
+    logging: true
   }
 }

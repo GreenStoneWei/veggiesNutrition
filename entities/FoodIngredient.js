@@ -6,41 +6,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TutorLanguages = void 0;
+exports.FoodIngredient = void 0;
 const typeorm_1 = require("typeorm");
-const Languages_1 = require("./Languages");
-const Tutors_1 = require("./Tutors");
-let TutorLanguages = class TutorLanguages {
+const FoodCategory_1 = require("./FoodCategory");
+const Recipe_1 = require("./Recipe");
+let FoodIngredient = class FoodIngredient {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
         type: 'int'
     })
-], TutorLanguages.prototype, "id", void 0);
+], FoodIngredient.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column({
+        type: 'text'
+    })
+], FoodIngredient.prototype, "name", void 0);
 __decorate([
     typeorm_1.Column({
         type: 'int'
     })
-], TutorLanguages.prototype, "tutorId", void 0);
+], FoodIngredient.prototype, "categoryId", void 0);
 __decorate([
     typeorm_1.Column({
         type: 'int'
     })
-], TutorLanguages.prototype, "languageId", void 0);
+], FoodIngredient.prototype, "nutritionItem", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => Tutors_1.Tutors),
-    typeorm_1.JoinColumn({
-        name: 'tutorId'
+    typeorm_1.Column({
+        type: 'real'
     })
-], TutorLanguages.prototype, "tutor", void 0);
+], FoodIngredient.prototype, "content", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => Languages_1.Languages),
+    typeorm_1.ManyToOne(() => FoodCategory_1.FoodCategory),
     typeorm_1.JoinColumn({
-        name: 'languageId'
+        name: 'categoryId'
     })
-], TutorLanguages.prototype, "language", void 0);
-TutorLanguages = __decorate([
+], FoodIngredient.prototype, "foodCategory", void 0);
+__decorate([
+    typeorm_1.OneToMany(() => Recipe_1.Recipe, (recipe) => recipe.foodIngredient)
+], FoodIngredient.prototype, "recipes", void 0);
+FoodIngredient = __decorate([
     typeorm_1.Entity()
-], TutorLanguages);
-exports.TutorLanguages = TutorLanguages;
-//# sourceMappingURL=TutorLanguages.js.map
+], FoodIngredient);
+exports.FoodIngredient = FoodIngredient;
+//# sourceMappingURL=FoodIngredient.js.map
