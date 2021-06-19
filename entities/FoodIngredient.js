@@ -81,10 +81,13 @@ var NutritionItem;
     NutritionItem["calcium"] = "calcium";
     NutritionItem["phosphorus"] = "phosphorus";
     NutritionItem["magnesium"] = "magnesium";
-    NutritionItem["ferrum"] = "ferrumr";
-    NutritionItem["zinc"] = "zine";
+    NutritionItem["ferrum"] = "ferrum";
+    NutritionItem["zinc"] = "zinc";
     NutritionItem["iodine"] = "iodine";
-    NutritionItem["selenium"] = "elenium";
+    NutritionItem["selenium"] = "selenium";
     NutritionItem["fluorine"] = "fluorine";
+    NutritionItem["cholesterol"] = "cholesterol";
+    NutritionItem["sodium"] = "sodium";
+    NutritionItem["potassium"] = "potassium";
 })(NutritionItem = exports.NutritionItem || (exports.NutritionItem = {}));
 //# sourceMappingURL=FoodIngredient.js.map

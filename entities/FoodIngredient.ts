@@ -64,14 +64,17 @@ export enum NutritionItem {
   vitaminD = 'vitaminD',
   vitaminK = 'vitaminK',
   folicAcid = 'folicAcid',
-  betaine = 'betaine',
-  biotin = 'biotin',
+  betaine = 'betaine', // 膽素，又名甜菜鹼，食藥署資料庫中似乎沒有
+  biotin = 'biotin', // 生物素，食藥署資料庫中似乎沒有
   calcium = 'calcium',
   phosphorus = 'phosphorus',
   magnesium = 'magnesium',
-  ferrum = 'ferrumr',
-  zinc = 'zine',
+  ferrum = 'ferrum',
+  zinc = 'zinc',
   iodine = 'iodine',
-  selenium = 'elenium',
-  fluorine = 'fluorine'
+  selenium = 'selenium', //
+  fluorine = 'fluorine', //
+  cholesterol = 'cholesterol', //
+  sodium = 'sodium',
+  potassium = 'potassium'
 }

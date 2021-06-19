@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getVitaminK = exports.getVitaminD = exports.getVitaminC = exports.getVitaminB12 = exports.getVitaminB6 = exports.getNiacin = exports.getVitaminB2 = exports.getVitaminB1 = exports.getVitaminA = exports.getDietaryFiber = exports.getCrudeFat = exports.getCrudeProtein = exports.getTotalCarbohydrate = exports.getCalories = void 0;
+exports.getOmega6 = exports.getOmega3 = exports.getPotassium = exports.getSodium = exports.getZinc = exports.getFerrum = exports.getMagnesium = exports.getPhosphorus = exports.getCalcium = exports.getFolicAcid = exports.getVitaminK = exports.getVitaminD = exports.getVitaminC = exports.getVitaminB12 = exports.getVitaminB6 = exports.getNiacin = exports.getVitaminB2 = exports.getVitaminB1 = exports.getVitaminA = exports.getDietaryFiber = exports.getCrudeFat = exports.getCrudeProtein = exports.getTotalCarbohydrate = exports.getCalories = void 0;
 const FoodIngredient_1 = require("../../../entities/FoodIngredient");
 var categoryMap;
 (function (categoryMap) {
@@ -235,6 +235,152 @@ function getVitaminK(raw) {
     };
 }
 exports.getVitaminK = getVitaminK;
+function getFolicAcid(raw) {
+    const folicAcid = raw.find((tnfd) => tnfd.analyzedItem === '葉酸');
+    if (!folicAcid) {
+        console.warn('cannot find 葉酸');
+        return;
+    }
+    return {
+        name: folicAcid.name,
+        categoryId: categoryMap[folicAcid.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.folicAcid,
+        content: Number(folicAcid.qtyPerHundredGram),
+        unit: folicAcid.unit
+    };
+}
+exports.getFolicAcid = getFolicAcid;
+function getCalcium(raw) {
+    const calcium = raw.find((tnfd) => tnfd.analyzedItem === '鈣');
+    if (!calcium) {
+        console.warn('cannot find 鈣');
+        return;
+    }
+    return {
+        name: calcium.name,
+        categoryId: categoryMap[calcium.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.calcium,
+        content: Number(calcium.qtyPerHundredGram),
+        unit: calcium.unit
+    };
+}
+exports.getCalcium = getCalcium;
+function getPhosphorus(raw) {
+    const phosphorus = raw.find((tnfd) => tnfd.analyzedItem === '磷');
+    if (!phosphorus) {
+        console.warn('cannot find 磷');
+        return;
+    }
+    return {
+        name: phosphorus.name,
+        categoryId: categoryMap[phosphorus.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.phosphorus,
+        content: Number(phosphorus.qtyPerHundredGram),
+        unit: phosphorus.unit
+    };
+}
+exports.getPhosphorus = getPhosphorus;
+function getMagnesium(raw) {
+    const magnesium = raw.find((tnfd) => tnfd.analyzedItem === '鎂');
+    if (!magnesium) {
+        console.warn('cannot find 鎂');
+        return;
+    }
+    return {
+        name: magnesium.name,
+        categoryId: categoryMap[magnesium.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.magnesium,
+        content: Number(magnesium.qtyPerHundredGram),
+        unit: magnesium.unit
+    };
+}
+exports.getMagnesium = getMagnesium;
+function getFerrum(raw) {
+    const ferrum = raw.find((tnfd) => tnfd.analyzedItem === '鐵');
+    if (!ferrum) {
+        console.warn('cannot find 鐵');
+        return;
+    }
+    return {
+        name: ferrum.name,
+        categoryId: categoryMap[ferrum.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.ferrum,
+        content: Number(ferrum.qtyPerHundredGram),
+        unit: ferrum.unit
+    };
+}
+exports.getFerrum = getFerrum;
+function getZinc(raw) {
+    const zinc = raw.find((tnfd) => tnfd.analyzedItem === '鋅');
+    if (!zinc) {
+        console.warn('cannot find 鋅');
+        return;
+    }
+    return {
+        name: zinc.name,
+        categoryId: categoryMap[zinc.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.zinc,
+        content: Number(zinc.qtyPerHundredGram),
+        unit: zinc.unit
+    };
+}
+exports.getZinc = getZinc;
+function getSodium(raw) {
+    const sodium = raw.find((tnfd) => tnfd.analyzedItem === '鈉');
+    if (!sodium) {
+        console.warn('cannot find 鈉');
+        return;
+    }
+    return {
+        name: sodium.name,
+        categoryId: categoryMap[sodium.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.sodium,
+        content: Number(sodium.qtyPerHundredGram),
+        unit: sodium.unit
+    };
+}
+exports.getSodium = getSodium;
+function getPotassium(raw) {
+    const potassium = raw.find((tnfd) => tnfd.analyzedItem === '鉀');
+    if (!potassium) {
+        console.warn('cannot find 鉀');
+        return;
+    }
+    return {
+        name: potassium.name,
+        categoryId: categoryMap[potassium.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.potassium,
+        content: Number(potassium.qtyPerHundredGram),
+        unit: potassium.unit
+    };
+}
+exports.getPotassium = getPotassium;
+function getOmega3(raw) {
+    //
+    // return {
+    //   name: potassium.name,
+    //   categoryId: categoryMap[potassium.foodCategory as any],
+    //   nutritionItem: NutritionItem.potassium,
+    //   content: Number(potassium.qtyPerHundredGram),
+    //   unit: potassium.unit
+    // }
+}
+exports.getOmega3 = getOmega3;
+function getOmega6(raw) {
+    const potassium = raw.find((tnfd) => tnfd.analyzedItem === '鉀');
+    if (!potassium) {
+        console.warn('cannot find 鉀');
+        return;
+    }
+    return {
+        name: potassium.name,
+        categoryId: categoryMap[potassium.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.potassium,
+        content: Number(potassium.qtyPerHundredGram),
+        unit: potassium.unit
+    };
+}
+exports.getOmega6 = getOmega6;
 function transformToFoodIngredient(name, categoryId, nutritionItem, content, unit) {
     return {
         name,
