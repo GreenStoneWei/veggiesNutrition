@@ -1,59 +1,5 @@
-import { Connection } from 'typeorm'
-import { Entity, Column, PrimaryColumn } from 'typeorm'
+import { Connection, Repository } from 'typeorm'
 import { TNFD } from '../../../entities/TNFD'
-// @Entity()
-// export class TNFD {
-//   @PrimaryColumn({
-//     type: 'int'
-//   })
-//   id: number
-
-//   @Column({
-//     type: 'text'
-//   })
-//   foodCategory: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   dataCategory: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   idNum: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   name: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   otherName: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   analyzedCategory: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   analyzedItem: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   unit: string
-
-//   @Column({
-//     type: 'text'
-//   })
-//   qtyPerHundredGram: string
-// }
-
 export class ModelTNFD {
   client: Connection
   tag: string = 'db/model/tnfd'
@@ -70,5 +16,9 @@ export class ModelTNFD {
     } catch (error) {
       throw error
     }
+  }
+
+  find: Repository<TNFD>['find'] = async (options: any) => {
+    return this.client.getRepository(TNFD).find(options)
   }
 }

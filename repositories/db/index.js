@@ -1,6 +1,7 @@
 "use strict";
 const typeorm_1 = require("typeorm");
 const tfnd_1 = require("./model/tfnd");
+const foodCategories_1 = require("./model/foodCategories");
 class Rdb {
     async connect(config, opt) {
         this.config = Object.assign(Object.assign({}, config), { entities: ['entities/*.js'], type: 'postgres', name: 'veggies' });
@@ -11,7 +12,7 @@ class Rdb {
                 await this.client.createQueryRunner().createSchema(config.schema, true);
                 await this.client.synchronize(true);
             }
-            // this.tutor = new ModelTutors(this.client)
+            this.foodCategory = new foodCategories_1.ModelFoodCategory(this.client);
             return this.client;
         }
         catch (error) {
@@ -37,7 +38,7 @@ class Rdb {
     async checkConnection() {
         try {
             if (this.client !== undefined) {
-                // await this.client.query('SELECT 1')
+                await this.client.query('SELECT 1');
                 await this.tfndClient.query('SELECT 1');
                 return true;
             }

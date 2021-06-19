@@ -1,5 +1,7 @@
 import { Connection, ConnectionOptions, createConnection } from 'typeorm'
 import { ModelTNFD } from './model/tfnd'
+import { ModelFoodCategory } from './model/foodCategories'
+
 interface DbConfig {
   name: string
   type: 'postgres'
@@ -19,6 +21,8 @@ interface DbConfig {
 class Rdb {
   config: DbConfig
   client: Connection
+  foodCategory: ModelFoodCategory
+
   tfndClient: Connection
   tfnd: ModelTNFD
 
@@ -39,7 +43,7 @@ class Rdb {
         await this.client.synchronize(true)
       }
 
-      // this.tutor = new ModelTutors(this.client)
+      this.foodCategory = new ModelFoodCategory(this.client)
 
       return this.client
     } catch (error) {
@@ -75,7 +79,7 @@ class Rdb {
   async checkConnection() {
     try {
       if (this.client !== undefined) {
-        // await this.client.query('SELECT 1')
+        await this.client.query('SELECT 1')
         await this.tfndClient.query('SELECT 1')
         return true
       }
