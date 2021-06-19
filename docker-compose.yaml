@@ -1,0 +1,12 @@
+db:
+  image: postgres:9.6
+  restart: always
+  ports:
+    - 5435:5432
+  environment:
+    - POSTGRES_USER=veggies
+    - POSTGRES_PASSWORD=veggies
+  volumes:
+    - ./initdb.d:/docker-entrypoint-initdb.d
+    - ./pgdata:/var/lib/postgresql/data
+    - ./postgres.conf:/etc/postgresql/postgresql.conf

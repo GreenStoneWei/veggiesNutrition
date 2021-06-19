@@ -11,3 +11,8 @@ dist
 .vscode
 
 ormconfig.json
+
+# local db volume
+pgdata
+initdb.d
+postgres.conf
