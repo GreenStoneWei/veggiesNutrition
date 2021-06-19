@@ -1,6 +1,7 @@
 import { TNFD } from '../../../entities/TNFD'
 import { NutritionItem } from '../../../entities/FoodIngredient'
 import db from '../../../repositories/db'
+
 enum categoryMap {
   '魚貝類' = 1,
   '穀物類',
@@ -30,9 +31,9 @@ export function getCalories(raw: TNFD[]) {
   }
   return {
     name: totalCalories.name,
-    categoryId: categoryMap[totalCalories.foodCategory as any],
+    categoryId: categoryMap[totalCalories.foodCategory as any] as any,
     nutritionItem: NutritionItem.calories,
-    content: Number(totalCalories.qtyPerHundredGram),
+    content: +Number(totalCalories.qtyPerHundredGram),
     unit: totalCalories.unit
   }
 }
@@ -47,7 +48,7 @@ export function getTotalCarbohydrate(raw: TNFD[]) {
     name: totalCarbohydrate.name,
     categoryId: categoryMap[totalCarbohydrate.foodCategory as any],
     nutritionItem: NutritionItem.totalCarbohydrate,
-    content: Number(totalCarbohydrate.qtyPerHundredGram),
+    content: +Number(totalCarbohydrate.qtyPerHundredGram).toFixed(2),
     unit: totalCarbohydrate.unit
   }
 }
@@ -62,7 +63,7 @@ export function getCrudeProtein(raw: TNFD[]) {
     name: crudeProtein.name,
     categoryId: categoryMap[crudeProtein.foodCategory as any],
     nutritionItem: NutritionItem.crudeProtein,
-    content: Number(crudeProtein.qtyPerHundredGram),
+    content: +Number(crudeProtein.qtyPerHundredGram).toFixed(2),
     unit: crudeProtein.unit
   }
 }
@@ -77,7 +78,7 @@ export function getCrudeFat(raw: TNFD[]) {
     name: crudeFat.name,
     categoryId: categoryMap[crudeFat.foodCategory as any],
     nutritionItem: NutritionItem.crudeFat,
-    content: Number(crudeFat.qtyPerHundredGram),
+    content: +Number(crudeFat.qtyPerHundredGram).toFixed(2),
     unit: crudeFat.unit
   }
 }
@@ -92,7 +93,7 @@ export function getDietaryFiber(raw: TNFD[]) {
     name: dietaryFiber.name,
     categoryId: categoryMap[dietaryFiber.foodCategory as any],
     nutritionItem: NutritionItem.dietaryFiber,
-    content: Number(dietaryFiber.qtyPerHundredGram),
+    content: +Number(dietaryFiber.qtyPerHundredGram).toFixed(2),
     unit: dietaryFiber.unit
   }
 }
@@ -107,7 +108,7 @@ export function getVitaminA(raw: TNFD[]) {
     name: vitaminA.name,
     categoryId: categoryMap[vitaminA.foodCategory as any],
     nutritionItem: NutritionItem.vitaminA,
-    content: Number(vitaminA.qtyPerHundredGram),
+    content: +Number(vitaminA.qtyPerHundredGram).toFixed(2),
     unit: vitaminA.unit
   }
 }
@@ -122,7 +123,7 @@ export function getVitaminB1(raw: TNFD[]) {
     name: vitaminB1.name,
     categoryId: categoryMap[vitaminB1.foodCategory as any],
     nutritionItem: NutritionItem.vitaminB1,
-    content: Number(vitaminB1.qtyPerHundredGram),
+    content: +Number(vitaminB1.qtyPerHundredGram).toFixed(2),
     unit: vitaminB1.unit
   }
 }
@@ -137,7 +138,7 @@ export function getVitaminB2(raw: TNFD[]) {
     name: vitaminB2.name,
     categoryId: categoryMap[vitaminB2.foodCategory as any],
     nutritionItem: NutritionItem.vitaminB2,
-    content: Number(vitaminB2.qtyPerHundredGram),
+    content: +Number(vitaminB2.qtyPerHundredGram).toFixed(2),
     unit: vitaminB2.unit
   }
 }
@@ -152,7 +153,7 @@ export function getNiacin(raw: TNFD[]) {
     name: niacin.name,
     categoryId: categoryMap[niacin.foodCategory as any],
     nutritionItem: NutritionItem.niacin,
-    content: Number(niacin.qtyPerHundredGram),
+    content: +Number(niacin.qtyPerHundredGram).toFixed(2),
     unit: niacin.unit
   }
 }
@@ -167,7 +168,7 @@ export function getVitaminB6(raw: TNFD[]) {
     name: vitaminB6.name,
     categoryId: categoryMap[vitaminB6.foodCategory as any],
     nutritionItem: NutritionItem.vitaminB6,
-    content: Number(vitaminB6.qtyPerHundredGram),
+    content: +Number(vitaminB6.qtyPerHundredGram).toFixed(2),
     unit: vitaminB6.unit
   }
 }
@@ -182,7 +183,7 @@ export function getVitaminB12(raw: TNFD[]) {
     name: vitaminB12.name,
     categoryId: categoryMap[vitaminB12.foodCategory as any],
     nutritionItem: NutritionItem.vitaminB12,
-    content: Number(vitaminB12.qtyPerHundredGram),
+    content: +Number(vitaminB12.qtyPerHundredGram).toFixed(2),
     unit: vitaminB12.unit
   }
 }
@@ -197,7 +198,7 @@ export function getVitaminC(raw: TNFD[]) {
     name: vitaminC.name,
     categoryId: categoryMap[vitaminC.foodCategory as any],
     nutritionItem: NutritionItem.vitaminC,
-    content: Number(vitaminC.qtyPerHundredGram),
+    content: +Number(vitaminC.qtyPerHundredGram).toFixed(2),
     unit: vitaminC.unit
   }
 }
@@ -212,7 +213,7 @@ export function getVitaminD(raw: TNFD[]) {
     name: vitaminD.name,
     categoryId: categoryMap[vitaminD.foodCategory as any],
     nutritionItem: NutritionItem.vitaminD,
-    content: Number(vitaminD.qtyPerHundredGram),
+    content: +Number(vitaminD.qtyPerHundredGram).toFixed(2),
     unit: vitaminD.unit
   }
 }
@@ -231,7 +232,7 @@ export function getVitaminK(raw: TNFD[]) {
     name: vitaminK[0].name,
     categoryId: categoryMap[vitaminK[0].foodCategory as any],
     nutritionItem: NutritionItem.vitaminK,
-    content,
+    content: +content.toFixed(2),
     unit: vitaminK[0].unit
   }
 }
@@ -246,7 +247,7 @@ export function getFolicAcid(raw: TNFD[]) {
     name: folicAcid.name,
     categoryId: categoryMap[folicAcid.foodCategory as any],
     nutritionItem: NutritionItem.folicAcid,
-    content: Number(folicAcid.qtyPerHundredGram),
+    content: +Number(folicAcid.qtyPerHundredGram).toFixed(2),
     unit: folicAcid.unit
   }
 }
@@ -261,7 +262,7 @@ export function getCalcium(raw: TNFD[]) {
     name: calcium.name,
     categoryId: categoryMap[calcium.foodCategory as any],
     nutritionItem: NutritionItem.calcium,
-    content: Number(calcium.qtyPerHundredGram),
+    content: +Number(calcium.qtyPerHundredGram).toFixed(2),
     unit: calcium.unit
   }
 }
@@ -276,7 +277,7 @@ export function getPhosphorus(raw: TNFD[]) {
     name: phosphorus.name,
     categoryId: categoryMap[phosphorus.foodCategory as any],
     nutritionItem: NutritionItem.phosphorus,
-    content: Number(phosphorus.qtyPerHundredGram),
+    content: +Number(phosphorus.qtyPerHundredGram).toFixed(2),
     unit: phosphorus.unit
   }
 }
@@ -291,7 +292,7 @@ export function getMagnesium(raw: TNFD[]) {
     name: magnesium.name,
     categoryId: categoryMap[magnesium.foodCategory as any],
     nutritionItem: NutritionItem.magnesium,
-    content: Number(magnesium.qtyPerHundredGram),
+    content: +Number(magnesium.qtyPerHundredGram).toFixed(2),
     unit: magnesium.unit
   }
 }
@@ -306,7 +307,7 @@ export function getFerrum(raw: TNFD[]) {
     name: ferrum.name,
     categoryId: categoryMap[ferrum.foodCategory as any],
     nutritionItem: NutritionItem.ferrum,
-    content: Number(ferrum.qtyPerHundredGram),
+    content: +Number(ferrum.qtyPerHundredGram).toFixed(2),
     unit: ferrum.unit
   }
 }
@@ -321,7 +322,7 @@ export function getZinc(raw: TNFD[]) {
     name: zinc.name,
     categoryId: categoryMap[zinc.foodCategory as any],
     nutritionItem: NutritionItem.zinc,
-    content: Number(zinc.qtyPerHundredGram),
+    content: +Number(zinc.qtyPerHundredGram).toFixed(2),
     unit: zinc.unit
   }
 }
@@ -336,7 +337,7 @@ export function getSodium(raw: TNFD[]) {
     name: sodium.name,
     categoryId: categoryMap[sodium.foodCategory as any],
     nutritionItem: NutritionItem.sodium,
-    content: Number(sodium.qtyPerHundredGram),
+    content: +Number(sodium.qtyPerHundredGram).toFixed(2),
     unit: sodium.unit
   }
 }
@@ -351,34 +352,23 @@ export function getPotassium(raw: TNFD[]) {
     name: potassium.name,
     categoryId: categoryMap[potassium.foodCategory as any],
     nutritionItem: NutritionItem.potassium,
-    content: Number(potassium.qtyPerHundredGram),
+    content: +Number(potassium.qtyPerHundredGram).toFixed(2),
     unit: potassium.unit
   }
 }
 
-export function getOmega3(raw: TNFD[]) {
-  //
-  // return {
-  //   name: potassium.name,
-  //   categoryId: categoryMap[potassium.foodCategory as any],
-  //   nutritionItem: NutritionItem.potassium,
-  //   content: Number(potassium.qtyPerHundredGram),
-  //   unit: potassium.unit
-  // }
-}
-
-export function getOmega6(raw: TNFD[]) {
-  const potassium = raw.find((tnfd) => tnfd.analyzedItem === '鉀')
-  if (!potassium) {
-    console.warn('cannot find 鉀')
+export function getCholesterol(raw: TNFD[]) {
+  const cholesterol = raw.find((tnfd) => tnfd.analyzedItem === '膽固醇')
+  if (!cholesterol) {
+    console.warn('cannot find 膽固醇')
     return
   }
   return {
-    name: potassium.name,
-    categoryId: categoryMap[potassium.foodCategory as any],
-    nutritionItem: NutritionItem.potassium,
-    content: Number(potassium.qtyPerHundredGram),
-    unit: potassium.unit
+    name: cholesterol.name,
+    categoryId: categoryMap[cholesterol.foodCategory as any],
+    nutritionItem: NutritionItem.cholesterol,
+    content: +Number(cholesterol.qtyPerHundredGram).toFixed(2),
+    unit: cholesterol.unit
   }
 }
 

@@ -10,8 +10,8 @@ export class ModelTNFD {
 
   async getByName(name: string): Promise<TNFD[]> {
     try {
-      const likeName = `%${name}%`
-      const result = await this.client.getRepository(TNFD).createQueryBuilder('tnfd').select().where('name like :name', { name: likeName }).getMany()
+      // const likeName = `%${name}%`
+      const result = await this.client.getRepository(TNFD).createQueryBuilder('tnfd').select().where('name = :name', { name }).getMany()
       return result
     } catch (error) {
       throw error

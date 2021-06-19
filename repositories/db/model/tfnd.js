@@ -12,8 +12,8 @@ class ModelTNFD {
     }
     async getByName(name) {
         try {
-            const likeName = `%${name}%`;
-            const result = await this.client.getRepository(TNFD_1.TNFD).createQueryBuilder('tnfd').select().where('name like :name', { name: likeName }).getMany();
+            // const likeName = `%${name}%`
+            const result = await this.client.getRepository(TNFD_1.TNFD).createQueryBuilder('tnfd').select().where('name = :name', { name }).getMany();
             return result;
         }
         catch (error) {

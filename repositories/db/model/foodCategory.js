@@ -12,4 +12,4 @@ class ModelFoodCategory {
     }
 }
 exports.ModelFoodCategory = ModelFoodCategory;
-//# sourceMappingURL=foodCategories.js.map
+//# sourceMappingURL=foodCategory.js.map

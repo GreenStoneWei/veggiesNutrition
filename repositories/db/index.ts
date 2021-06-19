@@ -1,7 +1,7 @@
 import { Connection, ConnectionOptions, createConnection } from 'typeorm'
 import { ModelTNFD } from './model/tfnd'
-import { ModelFoodCategory } from './model/foodCategories'
-
+import { ModelFoodCategory } from './model/foodCategory'
+import { ModelFoodIngredient } from './model/foodIngredient'
 interface DbConfig {
   name: string
   type: 'postgres'
@@ -22,6 +22,7 @@ class Rdb {
   config: DbConfig
   client: Connection
   foodCategory: ModelFoodCategory
+  foodIngredient: ModelFoodIngredient
 
   tfndClient: Connection
   tfnd: ModelTNFD
@@ -44,6 +45,7 @@ class Rdb {
       }
 
       this.foodCategory = new ModelFoodCategory(this.client)
+      this.foodIngredient = new ModelFoodIngredient(this.client)
 
       return this.client
     } catch (error) {

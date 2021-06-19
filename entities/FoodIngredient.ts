@@ -74,7 +74,7 @@ export enum NutritionItem {
   iodine = 'iodine',
   selenium = 'selenium', //
   fluorine = 'fluorine', //
-  cholesterol = 'cholesterol', //
+  cholesterol = 'cholesterol',
   sodium = 'sodium',
   potassium = 'potassium'
 }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOmega6 = exports.getOmega3 = exports.getPotassium = exports.getSodium = exports.getZinc = exports.getFerrum = exports.getMagnesium = exports.getPhosphorus = exports.getCalcium = exports.getFolicAcid = exports.getVitaminK = exports.getVitaminD = exports.getVitaminC = exports.getVitaminB12 = exports.getVitaminB6 = exports.getNiacin = exports.getVitaminB2 = exports.getVitaminB1 = exports.getVitaminA = exports.getDietaryFiber = exports.getCrudeFat = exports.getCrudeProtein = exports.getTotalCarbohydrate = exports.getCalories = void 0;
+exports.getCholesterol = exports.getPotassium = exports.getSodium = exports.getZinc = exports.getFerrum = exports.getMagnesium = exports.getPhosphorus = exports.getCalcium = exports.getFolicAcid = exports.getVitaminK = exports.getVitaminD = exports.getVitaminC = exports.getVitaminB12 = exports.getVitaminB6 = exports.getNiacin = exports.getVitaminB2 = exports.getVitaminB1 = exports.getVitaminA = exports.getDietaryFiber = exports.getCrudeFat = exports.getCrudeProtein = exports.getTotalCarbohydrate = exports.getCalories = void 0;
 const FoodIngredient_1 = require("../../../entities/FoodIngredient");
 var categoryMap;
 (function (categoryMap) {
@@ -33,7 +33,7 @@ function getCalories(raw) {
         name: totalCalories.name,
         categoryId: categoryMap[totalCalories.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.calories,
-        content: Number(totalCalories.qtyPerHundredGram),
+        content: +Number(totalCalories.qtyPerHundredGram),
         unit: totalCalories.unit
     };
 }
@@ -48,7 +48,7 @@ function getTotalCarbohydrate(raw) {
         name: totalCarbohydrate.name,
         categoryId: categoryMap[totalCarbohydrate.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.totalCarbohydrate,
-        content: Number(totalCarbohydrate.qtyPerHundredGram),
+        content: +Number(totalCarbohydrate.qtyPerHundredGram).toFixed(2),
         unit: totalCarbohydrate.unit
     };
 }
@@ -63,7 +63,7 @@ function getCrudeProtein(raw) {
         name: crudeProtein.name,
         categoryId: categoryMap[crudeProtein.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.crudeProtein,
-        content: Number(crudeProtein.qtyPerHundredGram),
+        content: +Number(crudeProtein.qtyPerHundredGram).toFixed(2),
         unit: crudeProtein.unit
     };
 }
@@ -78,7 +78,7 @@ function getCrudeFat(raw) {
         name: crudeFat.name,
         categoryId: categoryMap[crudeFat.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.crudeFat,
-        content: Number(crudeFat.qtyPerHundredGram),
+        content: +Number(crudeFat.qtyPerHundredGram).toFixed(2),
         unit: crudeFat.unit
     };
 }
@@ -93,7 +93,7 @@ function getDietaryFiber(raw) {
         name: dietaryFiber.name,
         categoryId: categoryMap[dietaryFiber.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.dietaryFiber,
-        content: Number(dietaryFiber.qtyPerHundredGram),
+        content: +Number(dietaryFiber.qtyPerHundredGram).toFixed(2),
         unit: dietaryFiber.unit
     };
 }
@@ -108,7 +108,7 @@ function getVitaminA(raw) {
         name: vitaminA.name,
         categoryId: categoryMap[vitaminA.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminA,
-        content: Number(vitaminA.qtyPerHundredGram),
+        content: +Number(vitaminA.qtyPerHundredGram).toFixed(2),
         unit: vitaminA.unit
     };
 }
@@ -123,7 +123,7 @@ function getVitaminB1(raw) {
         name: vitaminB1.name,
         categoryId: categoryMap[vitaminB1.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminB1,
-        content: Number(vitaminB1.qtyPerHundredGram),
+        content: +Number(vitaminB1.qtyPerHundredGram).toFixed(2),
         unit: vitaminB1.unit
     };
 }
@@ -138,7 +138,7 @@ function getVitaminB2(raw) {
         name: vitaminB2.name,
         categoryId: categoryMap[vitaminB2.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminB2,
-        content: Number(vitaminB2.qtyPerHundredGram),
+        content: +Number(vitaminB2.qtyPerHundredGram).toFixed(2),
         unit: vitaminB2.unit
     };
 }
@@ -153,7 +153,7 @@ function getNiacin(raw) {
         name: niacin.name,
         categoryId: categoryMap[niacin.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.niacin,
-        content: Number(niacin.qtyPerHundredGram),
+        content: +Number(niacin.qtyPerHundredGram).toFixed(2),
         unit: niacin.unit
     };
 }
@@ -168,7 +168,7 @@ function getVitaminB6(raw) {
         name: vitaminB6.name,
         categoryId: categoryMap[vitaminB6.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminB6,
-        content: Number(vitaminB6.qtyPerHundredGram),
+        content: +Number(vitaminB6.qtyPerHundredGram).toFixed(2),
         unit: vitaminB6.unit
     };
 }
@@ -183,7 +183,7 @@ function getVitaminB12(raw) {
         name: vitaminB12.name,
         categoryId: categoryMap[vitaminB12.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminB12,
-        content: Number(vitaminB12.qtyPerHundredGram),
+        content: +Number(vitaminB12.qtyPerHundredGram).toFixed(2),
         unit: vitaminB12.unit
     };
 }
@@ -198,7 +198,7 @@ function getVitaminC(raw) {
         name: vitaminC.name,
         categoryId: categoryMap[vitaminC.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminC,
-        content: Number(vitaminC.qtyPerHundredGram),
+        content: +Number(vitaminC.qtyPerHundredGram).toFixed(2),
         unit: vitaminC.unit
     };
 }
@@ -213,7 +213,7 @@ function getVitaminD(raw) {
         name: vitaminD.name,
         categoryId: categoryMap[vitaminD.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminD,
-        content: Number(vitaminD.qtyPerHundredGram),
+        content: +Number(vitaminD.qtyPerHundredGram).toFixed(2),
         unit: vitaminD.unit
     };
 }
@@ -230,7 +230,7 @@ function getVitaminK(raw) {
         name: vitaminK[0].name,
         categoryId: categoryMap[vitaminK[0].foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.vitaminK,
-        content,
+        content: +content.toFixed(2),
         unit: vitaminK[0].unit
     };
 }
@@ -245,7 +245,7 @@ function getFolicAcid(raw) {
         name: folicAcid.name,
         categoryId: categoryMap[folicAcid.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.folicAcid,
-        content: Number(folicAcid.qtyPerHundredGram),
+        content: +Number(folicAcid.qtyPerHundredGram).toFixed(2),
         unit: folicAcid.unit
     };
 }
@@ -260,7 +260,7 @@ function getCalcium(raw) {
         name: calcium.name,
         categoryId: categoryMap[calcium.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.calcium,
-        content: Number(calcium.qtyPerHundredGram),
+        content: +Number(calcium.qtyPerHundredGram).toFixed(2),
         unit: calcium.unit
     };
 }
@@ -275,7 +275,7 @@ function getPhosphorus(raw) {
         name: phosphorus.name,
         categoryId: categoryMap[phosphorus.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.phosphorus,
-        content: Number(phosphorus.qtyPerHundredGram),
+        content: +Number(phosphorus.qtyPerHundredGram).toFixed(2),
         unit: phosphorus.unit
     };
 }
@@ -290,7 +290,7 @@ function getMagnesium(raw) {
         name: magnesium.name,
         categoryId: categoryMap[magnesium.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.magnesium,
-        content: Number(magnesium.qtyPerHundredGram),
+        content: +Number(magnesium.qtyPerHundredGram).toFixed(2),
         unit: magnesium.unit
     };
 }
@@ -305,7 +305,7 @@ function getFerrum(raw) {
         name: ferrum.name,
         categoryId: categoryMap[ferrum.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.ferrum,
-        content: Number(ferrum.qtyPerHundredGram),
+        content: +Number(ferrum.qtyPerHundredGram).toFixed(2),
         unit: ferrum.unit
     };
 }
@@ -320,7 +320,7 @@ function getZinc(raw) {
         name: zinc.name,
         categoryId: categoryMap[zinc.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.zinc,
-        content: Number(zinc.qtyPerHundredGram),
+        content: +Number(zinc.qtyPerHundredGram).toFixed(2),
         unit: zinc.unit
     };
 }
@@ -335,7 +335,7 @@ function getSodium(raw) {
         name: sodium.name,
         categoryId: categoryMap[sodium.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.sodium,
-        content: Number(sodium.qtyPerHundredGram),
+        content: +Number(sodium.qtyPerHundredGram).toFixed(2),
         unit: sodium.unit
     };
 }
@@ -350,37 +350,26 @@ function getPotassium(raw) {
         name: potassium.name,
         categoryId: categoryMap[potassium.foodCategory],
         nutritionItem: FoodIngredient_1.NutritionItem.potassium,
-        content: Number(potassium.qtyPerHundredGram),
+        content: +Number(potassium.qtyPerHundredGram).toFixed(2),
         unit: potassium.unit
     };
 }
 exports.getPotassium = getPotassium;
-function getOmega3(raw) {
-    //
-    // return {
-    //   name: potassium.name,
-    //   categoryId: categoryMap[potassium.foodCategory as any],
-    //   nutritionItem: NutritionItem.potassium,
-    //   content: Number(potassium.qtyPerHundredGram),
-    //   unit: potassium.unit
-    // }
-}
-exports.getOmega3 = getOmega3;
-function getOmega6(raw) {
-    const potassium = raw.find((tnfd) => tnfd.analyzedItem === '鉀');
-    if (!potassium) {
-        console.warn('cannot find 鉀');
+function getCholesterol(raw) {
+    const cholesterol = raw.find((tnfd) => tnfd.analyzedItem === '膽固醇');
+    if (!cholesterol) {
+        console.warn('cannot find 膽固醇');
         return;
     }
     return {
-        name: potassium.name,
-        categoryId: categoryMap[potassium.foodCategory],
-        nutritionItem: FoodIngredient_1.NutritionItem.potassium,
-        content: Number(potassium.qtyPerHundredGram),
-        unit: potassium.unit
+        name: cholesterol.name,
+        categoryId: categoryMap[cholesterol.foodCategory],
+        nutritionItem: FoodIngredient_1.NutritionItem.cholesterol,
+        content: +Number(cholesterol.qtyPerHundredGram).toFixed(2),
+        unit: cholesterol.unit
     };
 }
-exports.getOmega6 = getOmega6;
+exports.getCholesterol = getCholesterol;
 function transformToFoodIngredient(name, categoryId, nutritionItem, content, unit) {
     return {
         name,
